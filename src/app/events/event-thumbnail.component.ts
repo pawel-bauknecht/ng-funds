@@ -11,4 +11,11 @@ export class EventThumbnailComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  // Time Style Logic
+  getTimeStyle() {
+    if (this.event && this.event.time === '8:00 am')
+      return { color: '#003300', 'font-weight': 'bold' };
+    else return {};
+  }
 }
