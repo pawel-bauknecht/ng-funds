@@ -31,3 +31,14 @@ button {
 .toast-warning {
   background-color: #f89406;
 }
+
+// form errors
+em {
+  float: right;
+  color: red;
+  padding-left: 10px;
+}
+
+.error input, .error select, .error textarea {
+  background-color: #e3c3c5;
+}

@@ -9,6 +9,7 @@ import {
   EventDetailsCanActivateGuard,
   } from './events';
 import { Error404Component } from './errors/error-404.component';
+import { CreateSessionComponent } from './events/event-details/create-session.component';
 
 export const appRoutes: Routes = [
   {
@@ -25,6 +26,9 @@ export const appRoutes: Routes = [
     path: 'events/:id',
     component: EventDetailsComponent,
     canActivate: [EventDetailsCanActivateGuard],
+  },
+  { path: 'events/session/new',
+    component: CreateSessionComponent
   },
   { path: 'user',
     loadChildren: () => import(`./user/user.module`).then(m => m.UserModule)

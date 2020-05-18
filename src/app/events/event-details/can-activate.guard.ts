@@ -8,7 +8,7 @@ import { EventService } from '../shared/event.service';
 export class EventDetailsCanActivateGuard implements CanActivate {
   constructor(private eventService: EventService, private router: Router) {}
 
-  canActivate(next: ActivatedRouteSnapshot) {
+  canActivate(next: ActivatedRouteSnapshot): boolean {
     const eventExists = !!this.eventService.getEvent(+next.params['id']);
 
     if (!eventExists) this.router.navigate(['/404']);

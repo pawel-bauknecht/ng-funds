@@ -1,10 +1,27 @@
-<h1> Edit Your Profile </h1>
-<hr>
+<h1>Edit Your Profile</h1>
+<hr />
 
-<div class="col-md-6">
-  <h3>[Edit Profile Form Here]</h3>
+<div class="col-md-4">
 
-  <button type="submit" class="btn btn-primary"> Save </button>
-  <button type="button" class="btn btn-default"> Cancel </button>
+  <!-- Edit Profile Form-->
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm.value)" autocomplete="off" novalidate>
+
+    <div class="form-group" [ngClass]="{'error': !validateFirstName()}">
+      <label for="firstName"> First Name: </label>
+      <em *ngIf="!validateFirstName() && profileForm.controls.firstName.errors.required"> Required </em>
+      <em *ngIf="!validateFirstName() && profileForm.controls.firstName.errors.pattern"> Not Valid </em>
+      <input formControlName="firstName" id="firstName" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group" [ngClass]="{'error': !validateLastName()}">
+      <label for="lastName"> Last Name: </label>
+      <em *ngIf="!validateLastName() && profileForm.controls.lastName.errors.required"> Required </em>
+      <em *ngIf="!validateLastName() && profileForm.controls.lastName.errors.pattern"> Not Valid </em>
+      <input formControlName="lastName" id="lastName" type="text" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary"> Save </button>
+    <button type="button" class="btn btn-default" (click)="cancel()"> Cancel </button>
+  </form>
 
 </div>
