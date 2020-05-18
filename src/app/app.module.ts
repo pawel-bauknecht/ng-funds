@@ -9,11 +9,12 @@ import {
   EventThumbnailComponent,
   EventDetailsComponent,
   CreateEventComponent,
+  CreateSessionComponent,
+  SessionListComponent,
 } from './events';
 import { EventsAppComponent } from './events-app.component';
 import { NavbarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/error-404.component';
-import { CreateSessionComponent } from './events/event-details/create-session.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
+    SessionListComponent,
   ],
   // providers: [],
   bootstrap: [EventsAppComponent],
