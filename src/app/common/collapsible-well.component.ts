@@ -15,6 +15,7 @@ import { Component, Input } from "@angular/core";
       <ng-content *ngIf="visible" select="[well-body]"></ng-content>
     </div>
   `,
+
   styles: [`
     span {
       float:right;
