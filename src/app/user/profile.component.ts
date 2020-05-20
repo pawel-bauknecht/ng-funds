@@ -1,16 +1,16 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from './login/auth.service';
-import { Router } from '@angular/router';
-import { Toastr, TOASTR_TOKEN } from '../common/toastr.service';
+import { Component, OnInit, Inject } from '@angular/core'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { AuthService } from './login/auth.service'
+import { Router } from '@angular/router'
+import { Toastr, TOASTR_TOKEN } from '../common/toastr.service'
 
 @Component({
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
-  profileForm: FormGroup;
-  private firstName: FormControl;
-  private lastName: FormControl;
+  profileForm: FormGroup
+  private firstName: FormControl
+  private lastName: FormControl
 
   constructor(
     private authService: AuthService,
@@ -19,8 +19,8 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-Z ]*')]);
-    this.lastName = new FormControl(this.authService.currentUser.lastName, [Validators.required, Validators.pattern('[a-zA-Z ]*')]);
+    this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-Z ]*')])
+    this.lastName = new FormControl(this.authService.currentUser.lastName, [Validators.required, Validators.pattern('[a-zA-Z ]*')])
 
     this.profileForm = new FormGroup({
       firstName: this.firstName,
@@ -38,14 +38,21 @@ export class ProfileComponent implements OnInit {
 
   saveProfile(formValues) {
     if(this.profileForm.valid) {
-      this.authService.updateCurrentUser(formValues.firstName, formValues.lastName);
-      // this.router.navigate(['events']);
-      this.toastr.success('Profile Saved')
+      this.authService.updateCurrentUser(formValues.firstName, formValues.lastName)
+        .subscribe(() => {
+          this.toastr.success('Profile Saved')
+        })
     }
   }
 
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['/user/login'])
+    })
+  }
+
   cancel(): void {
-    this.router.navigate(['events']);
+    this.router.navigate(['events'])
   }
 
 }

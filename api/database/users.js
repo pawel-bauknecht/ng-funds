@@ -18,6 +18,11 @@ var users = [{
   userName: "martinfowler",
   firstName: "Martin",
   lastName: "Fowler"
+},{
+  id: 5,
+  userName: "pablo",
+  firstName: "Pablo",
+  lastName: "Pablito"
 }];
 
 module.exports = users;
