@@ -1,9 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { appRoutes } from './routes';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser'
+import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { appRoutes } from './routes'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
+import { EventsAppComponent } from './events-app.component'
+import { NavbarComponent } from './nav/navbar.component'
+import { Error404Component } from './errors/error-404.component'
+import { DurationPipe } from './events/shared/duration.pipe'
 import {
   EventsListComponent,
   EventThumbnailComponent,
@@ -11,15 +15,18 @@ import {
   CreateEventComponent,
   CreateSessionComponent,
   SessionListComponent,
-} from './events';
-import { EventsAppComponent } from './events-app.component';
-import { NavbarComponent } from './nav/navbar.component';
-import { Error404Component } from './errors/error-404.component';
-import { CollapsibleWellComponent } from './common';
-import { DurationPipe } from './events/shared/duration.pipe';
-import { Toastr, TOASTR_TOKEN } from './common/toastr.service';
+} from './events'
+import {
+  CollapsibleWellComponent,
+  Toastr,
+  TOASTR_TOKEN,
+  JQ_TOKEN,
+  SimpleModalComponent,
+  ModalTriggerDirective
+} from './common'
 
-declare let toastr: Toastr
+let toastr: Toastr = window['toastr']
+let jQuery = window['$']
 
 @NgModule({
   imports: [
@@ -40,9 +47,12 @@ declare let toastr: Toastr
     SessionListComponent,
     CollapsibleWellComponent,
     DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective,
   ],
   providers: [
-    { provide: TOASTR_TOKEN, useValue: toastr}
+    { provide: TOASTR_TOKEN, useValue: toastr},
+    { provide: JQ_TOKEN, useValue: jQuery}
   ],
   bootstrap: [EventsAppComponent],
 })
