@@ -17,6 +17,9 @@ import { NavbarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/error-404.component';
 import { CollapsibleWellComponent } from './common';
 import { DurationPipe } from './events/shared/duration.pipe';
+import { Toastr, TOASTR_TOKEN } from './common/toastr.service';
+
+declare let toastr: Toastr
 
 @NgModule({
   imports: [
@@ -38,7 +41,9 @@ import { DurationPipe } from './events/shared/duration.pipe';
     CollapsibleWellComponent,
     DurationPipe,
   ],
-  // providers: [],
+  providers: [
+    { provide: TOASTR_TOKEN, useValue: toastr}
+  ],
   bootstrap: [EventsAppComponent],
 })
 export class AppModule {}
